@@ -1,8 +1,14 @@
 <template>
   <div :class="`${prefixClass}-calendar ${prefixClass}-calendar-panel-year`">
     <div :class="`${prefixClass}-calendar-header`">
-      <icon-button type="double-left" @click="handleIconDoubleLeftClick"></icon-button>
-      <icon-button type="double-right" @click="handleIconDoubleRightClick"></icon-button>
+      <icon-button
+        type="double-left"
+        @click="handleIconDoubleLeftClick"
+      ></icon-button>
+      <icon-button
+        type="double-right"
+        @click="handleIconDoubleRightClick"
+      ></icon-button>
       <span :class="`${prefixClass}-calendar-header-label`">
         <span>{{ firstYear }}</span>
         <span :class="`${prefixClass}-calendar-decade-separator`"></span>
@@ -10,8 +16,14 @@
       </span>
     </div>
     <div :class="`${prefixClass}-calendar-content`">
-      <table :class="`${prefixClass}-table ${prefixClass}-table-year`" @click="handleClick">
-        <tr v-for="(row, i) in years" :key="i">
+      <table
+        :class="`${prefixClass}-table ${prefixClass}-table-year`"
+        @click="handleClick"
+      >
+        <tr
+          v-for="(row, i) in years"
+          :key="i"
+        >
           <td
             v-for="(cell, j) in row"
             :key="j"
@@ -28,7 +40,7 @@
 </template>
 
 <script>
-import IconButton from './icon-button';
+import IconButton from './icon-button.vue';
 import { chunk } from '../util/base';
 import { setYear } from '../util/date';
 
@@ -41,6 +53,10 @@ export default {
     },
   },
   props: {
+    earlier: {
+      type: Boolean,
+      default: false,
+    },
     calendar: {
       type: Date,
       default: () => new Date(),
@@ -59,13 +75,14 @@ export default {
       if (typeof this.getYearPanel === 'function') {
         return this.getYearPanel(calendar);
       }
-      return this.getYears(calendar);
+      return this.earlier ? this.getYearsEarlier(calendar) : this.getYears(calendar);
+      // return this.getYears(calendar); // 原版本
     },
     firstYear() {
       return this.years[0][0];
     },
     lastYear() {
-      const last = arr => arr[arr.length - 1];
+      const last = (arr) => arr[arr.length - 1];
       return last(last(this.years));
     },
   },
@@ -78,17 +95,25 @@ export default {
       }
       return chunk(years, 2);
     },
+    getYearsEarlier(calendar) {
+      const firstYear = Math.floor(calendar.getFullYear() - 9);
+      const years = [];
+      for (let i = 0; i < 10; i++) {
+        years.push(firstYear + i);
+      }
+      return chunk(years, 2);
+    },
     handleIconDoubleLeftClick() {
       this.$emit(
         'changecalendar',
-        setYear(this.calendar, v => v - 10),
+        setYear(this.calendar, (v) => v - 10),
         'last-decade'
       );
     },
     handleIconDoubleRightClick() {
       this.$emit(
         'changecalendar',
-        setYear(this.calendar, v => v + 10),
+        setYear(this.calendar, (v) => v + 10),
         'next-decade'
       );
     },

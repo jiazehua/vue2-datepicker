@@ -46,6 +46,10 @@ export default {
       type: String, // ['date', 'datetime', 'time', 'year', 'month', 'week']
       default: 'date',
     },
+    earlier: {
+      type: Boolean, // ['date', 'datetime', 'time', 'year', 'month', 'week']
+      default: false,
+    },
     format: {
       type: String,
     },

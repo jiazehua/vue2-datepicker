@@ -33,7 +33,7 @@
 
 <script>
 import { chunk } from '../util/base';
-import IconButton from './icon-button';
+import IconButton from './icon-button.vue';
 import { getLocale } from '../locale';
 import { setYear } from '../util/date';
 
