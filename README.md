@@ -117,6 +117,7 @@ You can also override some of the default locale by `lang`.
 | ------------------- | ------------------------------------------------ | ----------------------------------------------- | -------------- |
 | type                | select the type of picker                        | date \|datetime\|year\|month\|time\|week        | 'date'         |
 | range               | if true, pick the range date                     | `boolean`                                       | false          |
+| earlier             | if true, pick starts with earlier 10 years       | `boolean`                                       | false          |
 | format              | to set the date format. similar to moment.js     | [token](#token)                                 | 'YYYY-MM-DD'   |
 | formatter           | use your own formatter, such as moment.js        | [object](#formatter)                            | -              |
 | value-type          | data type of the binding value                   | [value-type](#value-type)                       | 'date'         |

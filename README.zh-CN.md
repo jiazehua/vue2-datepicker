@@ -115,6 +115,7 @@ import 'vue2-datepicker/locale/zh-cn';
 | ------------------- | ------------------------------------------------ | ----------------------------------------------- | -------------- |
 | type                | 日期选择的类型                                   | date \|datetime\|year\|month\|time\|week        | 'date'         |
 | range               | 如果是 true, 变成日期范围选择                    | `boolean`                                       | false          |
+| range               | 如果是 true, 年份选择器会默认之前十年            | `boolean`                                       | false          |
 | format              | 设置格式化的 token, 类似 moment.js               | [token](#token)                                 | 'YYYY-MM-DD'   |
 | formatter           | 使用自己的格式化程序, 比如 moment.js             | [object](#formatter)                            | -              |
 | value-type          | 设置绑定值的类型                                 | [value-type](#value-type)                       | 'date'         |
