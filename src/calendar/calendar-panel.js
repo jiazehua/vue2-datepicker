@@ -33,6 +33,10 @@ export default {
     defaultPanel: {
       type: String,
     },
+    earlier: {
+      type: Boolean,
+      default: false,
+    },
     disabledDate: {
       type: Function,
       default: () => false,
